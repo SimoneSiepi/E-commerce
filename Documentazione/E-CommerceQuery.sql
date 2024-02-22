@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS immagini (
     FOREIGN KEY (id_prodotto) REFERENCES prodotti(id)
 );
 
-CREATE TABLE IF NOT EXISTS carrelloProdotti (
+CREATE TABLE IF NOT EXISTS carrello_Prodotti (
     id INT(12) PRIMARY KEY NOT NULL AUTO_INCREMENT,
     quantitaProdotto DECIMAL(10, 2),
     id_carrello INT(12),
@@ -87,11 +87,10 @@ CREATE TABLE IF NOT EXISTS recensioni (
 
 CREATE TABLE IF NOT EXISTS categorie (
     nome VARCHAR(255) PRIMARY KEY NOT NULL,
-    id_immagine INT(12),
     path_img VARCHAR(255)
 );
 
-CREATE TABLE IF NOT EXISTS categoriaProdotti (
+CREATE TABLE IF NOT EXISTS categoria_Prodotti (
     id INT(12) PRIMARY KEY NOT NULL AUTO_INCREMENT,
     id_prodotto INT(12) NOT NULL,
     categoria VARCHAR(255),
@@ -99,7 +98,7 @@ CREATE TABLE IF NOT EXISTS categoriaProdotti (
     FOREIGN KEY (categoria) REFERENCES categorie(nome)
 );
 
-CREATE TABLE IF NOT EXISTS dettagliOrdini (
+CREATE TABLE IF NOT EXISTS dettagli_Ordini (
     id_prodotto INT(12) NOT NULL,
     id_ordine INT(12),
     qta INT(255),
