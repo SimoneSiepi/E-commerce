@@ -49,64 +49,29 @@ $db->chiudiConnessione();
     </div>
   </header>
   <!-- Carousel -->
-  <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
+  <div id="myCarousel" class="carousel slide mb-6 fixed-height" data-bs-ride="carousel">
     <div class="carousel-indicators">
       <?php
       $index = 0;
       foreach ($catPath as $row) {
-        echo '<button type="button" data-bs-target="#myCarousel" data-bs-slide-to="' . $index . '" ' . ($index === 0 ? 'class="active"' : '') . ($index === 0 ? 'aria-current="true"' : '') . ($index === 0 ? 'true' : 'false') . '" aria-label="Slide ' . ($index + 1) . '"></button>';
+        echo '<button type="button" data-bs-target="#myCarousel" data-bs-slide-to="' . $index . '" ' . ($index === 0 ? 'class="active"' : '') . ($index === 0 ? 'aria-current="true"' : '') . '" aria-label="Slide ' . ($index + 1) . '"></button>';
         $index++;
       }
       ?>
-      <!--  <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button> -->
     </div>
     <div class="carousel-inner">
       <?php
       $index = 0;
       foreach ($catPath as $row) {
         echo '<div class="carousel-item ' . ($index === 0 ? 'active' : '') . '">';
-        echo '<img src="' . $row["path_img"] . '" class="d-block img-fluid" alt="' . $row["nome"] . '">';
+        echo '<img src="' . $row["path_img"] . '" class="d-block w-100" alt="' . $row["nome"] . '" style="object-fit: cover;">';
         echo '<div class="carousel-caption">';
         echo '<h2>' . $row["nome"] . '</h2>';
-
         echo '</div>';
         echo '</div>';
         $index++;
       }
       ?>
-
-      <!-- <div class="carousel-item active">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-        <div class="container">
-          <div class="carousel-caption text-start">
-            <h1>Example headline.</h1>
-            <p class="opacity-75">Some representative placeholder content for the first slide of the carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-        <div class="container">
-          <div class="carousel-caption">
-            <h1>Another example headline.</h1>
-            <p>Some representative placeholder content for the second slide of the carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-        <div class="container">
-          <div class="carousel-caption text-end">
-            <h1>One more for good measure.</h1>
-            <p>Some representative placeholder content for the third slide of this carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
-          </div>
-        </div>
-      </div> -->
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -118,10 +83,14 @@ $db->chiudiConnessione();
     </button>
   </div>
 
+
   <div class="row featurette">
     <div class="col-md-7">
       <h2 class="featurette-heading fw-normal lh-1">First featurette heading. <span class="text-body-secondary">It’ll blow your mind.</span></h2>
       <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
+      <div class="d-flex gap-2 justify-content-center py-5">
+        <button class="btn btn-secondary rounded-pill px-3" type="button">dettagli</button>
+      </div>
     </div>
     <div class="col-md-5">
       <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
@@ -143,8 +112,16 @@ $db->chiudiConnessione();
     <div class="col-md-7">
       <h2 class="featurette-heading fw-normal lh-1">First featurette heading. <span class="text-body-secondary">It’ll blow your mind.</span></h2>
       <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
+      <div class="d-flex gap-2 justify-content-center py-5">
+        <button class="btn btn-secondary rounded-pill px-3" type="button">dettagli</button>
+      </div>
     </div>
 
+  </div>
+
+  <!-- bottom button -->
+  <div class="d-flex gap-2 justify-content-center py-5">
+    <button class="btn btn-primary rounded-pill px-3" type="button">visualizza tutto</button>
   </div>
 
   <!-- footer -->
