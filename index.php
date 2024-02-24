@@ -67,9 +67,10 @@ $db->chiudiConnessione();
       $index = 0;
       foreach ($catPath as $row) {
         echo '<div class="carousel-item ' . ($index === 0 ? 'active' : '') . '">';
-        echo '<img src="' . $row["path_img"] . ' alt="' . $row["nome"] . '">';
+        echo '<img src="' . $row["path_img"] . '" class="d-block img-fluid" alt="' . $row["nome"] . '">';
         echo '<div class="carousel-caption">';
         echo '<h2>' . $row["nome"] . '</h2>';
+
         echo '</div>';
         echo '</div>';
         $index++;
