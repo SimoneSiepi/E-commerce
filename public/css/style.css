@@ -9,9 +9,3 @@ body{
 .carousel-caption > h2 {
     color: black;
 }
-
-.carousel-item img {
-    max-width: 100%; /* Imposta la larghezza massima al 100% della larghezza del contenitore parent */
-    height: auto; /* Imposta l'altezza in modo da mantenere le proporzioni originali */
-    /* Altre regole CSS se necessario... */
-}
