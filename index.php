@@ -1,3 +1,16 @@
+<?php 
+include_once("./classi/Database.php");
+$db = new Database();
+$conn = $db->getConn();
+
+$query = "SELECT path_img FROM categorie";
+$stmt = $conn->prepare($query);
+$stmt->execute();
+
+$catPath = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$db->chiudiConnessione();
+?>
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -34,12 +47,29 @@
   <!-- Carousel -->
   <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
     <div class="carousel-indicators">
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <?php
+      $index=0;
+      foreach ($catPath as $row) {
+        echo '<button type="button" data-bs-target="#categoryCarousel" data-bs-slide-to="' . $index . '" ' . ($index === 0 ? 'class="active"' : '') . ' aria-current="' . ($index === 0 ? 'true' : 'false') . '" aria-label="Slide ' . ($index + 1) . '"></button>';
+        $index++;
+    }
+      ?>
+     <!--  <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button> -->
     </div>
     <div class="carousel-inner">
-      <div class="carousel-item active">
+      <?php 
+        foreach ($catPath as $row) {
+          echo '<div class="carousel-item ' . ($index === 0 ? 'active' : '') . '">';
+          echo '<h2>' . $row["nome"] . '</h2>';
+          echo '<img src="' . $row["path_img"] . '" alt="' . $row["nome"] . '" class="img-fluid">';
+          // Puoi aggiungere ulteriori dettagli o link per la categoria qui
+          echo '</div>';
+          $index++;
+      }
+      ?>
+      <!-- <div class="carousel-item active">
         <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
         <div class="container">
           <div class="carousel-caption text-start">
@@ -68,7 +98,7 @@
             <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
