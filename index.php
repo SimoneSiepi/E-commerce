@@ -10,6 +10,9 @@ $stmt->execute();
 $catPath = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $db->chiudiConnessione();
+
+session_start();
+$utenteLoggato = isset($_SESSION['utenteLoggato']) && $_SESSION['utenteLoggato'] === true;
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -35,15 +38,20 @@ $db->chiudiConnessione();
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">Catalogo</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">Carrello</a></li>
         </ul>
 
         <div class="text-end">
-          <button type="button" class="btn btn-outline-light me-2">Login</button>
-          <button type="button" class="btn btn-warning">Sign-up</button>
+          <?php
+          // Controlla se l'utente è loggato
+          if ($utenteLoggato) {
+            echo '<a href="logout.php" class="btn btn-warning">Logout</a>';
+          } else {
+            echo '<a href="login.php" class="btn btn-outline-light me-2">Login</a>';
+            echo '<a href="signup.php" class="btn btn-warning">Sign-up</a>';
+          }
+          ?>
         </div>
       </div>
     </div>
@@ -83,7 +91,7 @@ $db->chiudiConnessione();
     </button>
   </div>
 
-
+  <!-- featurette -->
   <div class="row featurette">
     <div class="col-md-7">
       <h2 class="featurette-heading fw-normal lh-1">First featurette heading. <span class="text-body-secondary">It’ll blow your mind.</span></h2>
@@ -99,9 +107,7 @@ $db->chiudiConnessione();
       </svg>
     </div>
   </div>
-
   <hr class="featurette-divider">
-
   <div class="row featurette">
     <div class="col-md-5">
       <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
@@ -116,7 +122,6 @@ $db->chiudiConnessione();
         <button class="btn btn-secondary rounded-pill px-3" type="button">dettagli</button>
       </div>
     </div>
-
   </div>
 
   <!-- bottom button -->
