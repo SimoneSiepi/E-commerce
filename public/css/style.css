@@ -1,6 +1,7 @@
 @import url('../bootstrap-5.3.2-dist/css/bootstrap.css');
 @import url('carousel.css');
 @import url('carousel.rtl.css');
+@import url('sign-in.css');
 
 body{
     margin: 0;

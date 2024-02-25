@@ -30,11 +30,13 @@ $utenteLoggato = isset($_SESSION['utenteLoggato']) && $_SESSION['utenteLoggato']
   <header class="p-3 text-bg-dark">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
-            <use xlink:href="#bootstrap" />
+        <a href="./" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap" xmlns="http://www.w3.org/2000/svg">
+            <img src="./public/img/house-solid.svg" alt="">
           </svg>
         </a>
+
+
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
@@ -48,7 +50,7 @@ $utenteLoggato = isset($_SESSION['utenteLoggato']) && $_SESSION['utenteLoggato']
           if ($utenteLoggato) {
             echo '<a href="logout.php" class="btn btn-warning">Logout</a>';
           } else {
-            echo '<a href="login.php" class="btn btn-outline-light me-2">Login</a>';
+            echo '<a href="./pagine/login.php" class="btn btn-outline-light me-2">Login</a>';
             echo '<a href="signup.php" class="btn btn-warning">Sign-up</a>';
           }
           ?>
