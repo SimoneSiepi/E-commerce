@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="auto">
 
@@ -40,7 +41,7 @@
         <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
             <li>
                 <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
-                    <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em">
+                    <svg class="bi me-2 opacitta-50 theme-icon" width="1em" height="1em">
                         <use href="#sun-fill"></use>
                     </svg>
                     Light
@@ -51,7 +52,7 @@
             </li>
             <li>
                 <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
-                    <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em">
+                    <svg class="bi me-2 opacitta-50 theme-icon" width="1em" height="1em">
                         <use href="#moon-stars-fill"></use>
                     </svg>
                     Dark
@@ -62,7 +63,7 @@
             </li>
             <li>
                 <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto" aria-pressed="true">
-                    <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em">
+                    <svg class="bi me-2 opacitta-50 theme-icon" width="1em" height="1em">
                         <use href="#circle-half"></use>
                     </svg>
                     Auto
@@ -82,18 +83,18 @@
             <h1 class="h3 mb-3 fw-normal">Registrazione</h1>
 
             <div class="form-floating">
-                <input type="text" class="form-control" id="firstName" name="nome" placeholder="First Name" required>
-                <label for="firstName">First Name</label>
+                <input type="text" class="form-control" id="nome" name="nome" placeholder="First Name" required>
+                <label for="nome">First Name</label>
             </div>
 
             <div class="form-floating">
-                <input type="text" class="form-control" id="lastName" name="cognome" placeholder="Last Name" required>
-                <label for="lastName">Last Name</label>
+                <input type="text" class="form-control" id="cognome" name="cognome" placeholder="Last Name" required>
+                <label for="cognome">Last Name</label>
             </div>
 
             <div class="form-floating">
                 <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
-                <label for="email">Email address</label>
+                <label for="email">Email</label>
             </div>
 
             <div class="form-floating">
@@ -103,31 +104,37 @@
 
             <!-- Aggiunti campi per l'indirizzo -->
             <div class="form-floating">
-                <input type="text" class="form-control" id="address" name="indirizzo" placeholder="Indirizzo" required>
-                <label for="address">Indirizzo</label>
+                <input type="text" class="form-control" id="indirizzo" name="indirizzo" placeholder="Indirizzo" required>
+                <label for="indirizzo">Indirizzo</label>
             </div>
 
             <div class="form-floating">
-                <input type="text" class="form-control" id="city" name="citta" placeholder="Città" required>
-                <label for="city">Città</label>
+                <input type="text" class="form-control" id="citta" name="citta" placeholder="Città" required>
+                <label for="citta">Città</label>
             </div>
 
             <div class="form-floating">
-                <input type="number" class="form-control" id="postalCode" name="CAP" placeholder="CAP" required>
-                <label for="postalCode">CAP</label>
+                <input type="number" class="form-control" id="CAP" name="CAP" placeholder="CAP" required>
+                <label for="CAP">CAP</label>
             </div>
 
             <div class="form-floating">
-                <input type="number" class="form-control" id="houseNumber" name="nCivico" placeholder="Numero Civico" required>
-                <label for="houseNumber">Numero Civico</label>
+                <input type="number" class="form-control" id="nCivico" name="nCivico" placeholder="Numero Civico" required>
+                <label for="nCivico">Numero Civico</label>
             </div>
 
             <div class="form-floating">
-                <input type="date" class="form-control" id="birthdate" name="dataDiNascita" placeholder="Data di Nascita" required>
-                <label for="birthdate">Data di Nascita</label>
+                <input type="date" class="form-control" id="dataDiNascita" name="dataDiNascita" placeholder="Data di Nascita" required>
+                <label for="dataDiNascita">Data di Nascita</label>
             </div>
 
             <button class="btn btn-primary w-100 py-2" type="submit">Register</button>
+
+            <?php
+                if ($_SESSION["registrazione"]) {
+                    echo '<p style="color:red;">dati inseriti non corretti</p>';
+                }
+            ?>
 
             <div class="mt-3 text-center">
                 <p>Già hai un account?</p>

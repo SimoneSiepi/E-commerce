@@ -1,5 +1,5 @@
 <?php
-
+require_once 'Database.php';
 class Utente
 {
     private $id;
@@ -11,11 +11,10 @@ class Utente
     private $CAP;
     private $indirizzo;
     private $dataDiNascita;
-    private $password;
+    private $passwird;
 
-    public function __construct($id, $nome, $cognome, $email, $citta, $nCivico, $CAP, $indirizzo, $dataDiNascita, $password)
+    public function __construct($nome, $cognome, $email, $citta, $nCivico, $CAP, $indirizzo, $dataDiNascita, $passwird)
     {
-        $this->id = $id;
         $this->nome = $nome;
         $this->cognome = $cognome;
         $this->email = $email;
@@ -24,7 +23,7 @@ class Utente
         $this->CAP = $CAP;
         $this->indirizzo = $indirizzo;
         $this->dataDiNascita = $dataDiNascita;
-        $this->password = $password;
+        $this->passwird = $passwird;
     }
 
     // Getter e setter
@@ -42,7 +41,7 @@ class Utente
         if (property_exists($this, $prop)) {
             $this->$prop = $value;
         } else {
-            echo "Impossibile settare la proprietà " . $prop;
+            echo "Impossibile settare la proprietà " . $prop." ps: e' il sett di utente";
         }
     }
 
@@ -69,8 +68,7 @@ class Utente
     }
 
     // Metodo per la registrazione di un utente
-    public function registrazione($password)
-    {
+    public function registrazione(){
         $controllo = false;
 
         $db = new Database();
@@ -98,12 +96,12 @@ class Utente
             $this->id = $conn->lastInsertId();
 
             // Inserisci le credenziali nella tabella credenziali
-            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-            $queryCredenziali = "INSERT INTO credenziali (password, id_utente) VALUES (:password, :id_utente)";
+            $hashedPassword = password_hash($this->passwird, PASSWORD_DEFAULT);
+            $queryCredenziali = "INSERT INTO credenziali (passwird, id_utente) VALUES (:passwird, :id_utente)";
             $stmtCredenziali = $conn->prepare($queryCredenziali);
 
             // Associa i parametri della query alle credenziali
-            $stmtCredenziali->bindParam(':password', $hashedPassword, PDO::PARAM_STR);
+            $stmtCredenziali->bindParam(':passwird', $hashedPassword, PDO::PARAM_STR);
             $stmtCredenziali->bindParam(':id_utente', $this->id, PDO::PARAM_INT);
 
             $stmtCredenziali->execute();
