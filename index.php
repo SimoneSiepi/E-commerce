@@ -13,7 +13,7 @@ $db->chiudiConnessione();
 
 session_start();
 $utenteLoggato = isset($_SESSION['utenteLoggato']) && $_SESSION['utenteLoggato'] === true;
-// $utenteLoggato = true;
+//$utenteLoggato = true;
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -49,7 +49,7 @@ $utenteLoggato = isset($_SESSION['utenteLoggato']) && $_SESSION['utenteLoggato']
           <?php
           // Controlla se l'utente è loggato
           if ($utenteLoggato) {
-            echo '<a href="logout.php" class="btn btn-warning">Logout</a>';
+            echo '<a href="./pagine/logOut.php" class="btn btn-outline-light me-2">Log-out</a>';
           } else {
             echo '<a href="./pagine/login.php" class="btn btn-outline-light me-2">Login</a>';
             echo '<a href="signup.php" class="btn btn-warning">Sign-up</a>';

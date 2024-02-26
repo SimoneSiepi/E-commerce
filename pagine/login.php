@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-bs-theme="auto">
+<html lang="it" data-bs-theme="auto">
 
 <head>
     <script src="../public/bootstrap-5.3.2-dist/js/bootstrap.bundle.js"></script>
@@ -76,7 +76,7 @@
 
 
     <main class="form-signin w-100 m-auto">
-        <form>
+        <form method="post" action="./outputLogin.php">
             <img class="mb-4" src="../public/img/circle-user-regular.svg" alt="" width="72" height="57">
             <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
