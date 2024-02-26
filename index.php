@@ -13,6 +13,7 @@ $db->chiudiConnessione();
 
 session_start();
 $utenteLoggato = isset($_SESSION['utenteLoggato']) && $_SESSION['utenteLoggato'] === true;
+// $utenteLoggato = true;
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -99,62 +100,51 @@ $utenteLoggato = isset($_SESSION['utenteLoggato']) && $_SESSION['utenteLoggato']
       <h2 class="featurette-heading fw-normal lh-1">First featurette heading. <span class="text-body-secondary">It’ll blow your mind.</span></h2>
       <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
       <div class="d-flex gap-2 justify-content-center py-5">
-        <button class="btn btn-secondary rounded-pill px-3" type="button">dettagli</button>
+        <?php 
+          if (!$utenteLoggato) {
+            echo '<a href="./pagine/login.php"><button class="btn btn-secondary rounded-pill px-3" type="button">dettagli</button></a>';
+          }else{
+            echo '<button class="btn btn-secondary rounded-pill px-3" type="button">dettagli</button>';
+          }
+        ?>
+        <!-- <button class="btn btn-secondary rounded-pill px-3" type="button">dettagli</button> -->
       </div>
     </div>
     <div class="col-md-5">
-      <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
-        <title>Placeholder</title>
-        <rect width="100%" height="100%" fill="var(--bs-secondary-bg)" /><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text>
-      </svg>
+      <img src="./public/img/prodotti/divanoBello.jpeg" alt="un divano bello" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500">
     </div>
   </div>
   <hr class="featurette-divider">
   <div class="row featurette">
     <div class="col-md-5">
-      <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
-        <title>Placeholder</title>
-        <rect width="100%" height="100%" fill="var(--bs-secondary-bg)" /><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text>
-      </svg>
+      <div class="col-md-6">
+        <img src="./public/img/prodotti/lavaboBello.jpeg" alt="un lavabo bello" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500">
+      </div>
     </div>
     <div class="col-md-7">
       <h2 class="featurette-heading fw-normal lh-1">First featurette heading. <span class="text-body-secondary">It’ll blow your mind.</span></h2>
       <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
       <div class="d-flex gap-2 justify-content-center py-5">
-        <button class="btn btn-secondary rounded-pill px-3" type="button">dettagli</button>
+      <?php 
+          if (!$utenteLoggato) {
+            echo '<a href="./pagine/login.php"><button class="btn btn-secondary rounded-pill px-3" type="button">dettagli</button></a>';
+          }else{
+            echo '<button class="btn btn-secondary rounded-pill px-3" type="button">dettagli</button>';
+          }
+        ?>
       </div>
     </div>
   </div>
 
   <!-- bottom button -->
   <div class="d-flex gap-2 justify-content-center py-5">
-    <button class="btn btn-primary rounded-pill px-3" type="button">visualizza tutto</button>
-  </div>
-
-  <!-- footer -->
-  <div class="container">
-    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-      <div class="col-md-4 d-flex align-items-center">
-        <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
-          <svg class="bi" width="30" height="24">
-            <use xlink:href="#bootstrap" />
-          </svg>
-        </a>
-        <span class="mb-3 mb-md-0 text-body-secondary">&copy; 2023 Company, Inc</span>
-      </div>
-
-      <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-        <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24">
-              <use xlink:href="#twitter" />
-            </svg></a></li>
-        <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24">
-              <use xlink:href="#instagram" />
-            </svg></a></li>
-        <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24">
-              <use xlink:href="#facebook" />
-            </svg></a></li>
-      </ul>
-    </footer>
+    <?php 
+      if (!$utenteLoggato) {
+        echo '<a href="./pagine/login.php"><button class="btn btn-primary rounded-pill px-3" type="button">visualizza tutto</button></a>';
+      }else{
+        echo '<a href="./pagine/catalogo.php"><button class="btn btn-primary rounded-pill px-3" type="button">visualizza tutto il catalogo</button></a>';
+      }
+    ?>
   </div>
 </body>
 
