@@ -77,7 +77,7 @@
     </div>
 
     <main class="form-signin w-100 m-auto">
-        <form method="POST" action="processa_registrazione.php">
+        <form method="POST" action="./outputRegistrazione.php">
             <img class="mb-4" src="../public/img/circle-user-regular.svg" alt="" width="72" height="57">
             <h1 class="h3 mb-3 fw-normal">Registrazione</h1>
 
