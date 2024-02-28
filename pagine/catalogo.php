@@ -92,7 +92,7 @@ $selectedCategory = isset($_GET['categoria']) ? $_GET['categoria'] : 'tutti';
                         echo '<p class="card-text">' . $row['descrizione'] . '</p>';
                         echo '<div class="d-flex justify-content-between align-items-center">';
                         echo '<div class="btn-group">';
-                        echo '<button type="button" class="btn btn-sm btn-outline-secondary">View</button>';
+                        echo '<a href="./dettagliProdotto.php"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>';
                         echo '</div>';
                         echo '<p class="text-body-secondary">'.number_format($row['prezzo'], 2) .'</p>';
                         echo '</div>';
