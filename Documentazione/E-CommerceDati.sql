@@ -18,7 +18,7 @@ VALUES
     ('public/img/prodotti/divanoBello.jpeg', 2);
 
 -- Inserimento categorie
-INSERT INTO categorie (nome, path_img)
+INSERT INTO categorie (nome_categoria, path_img)
 VALUES 
     ('cucina', 'public/img/categorie/cucina.jpg'),
     ('salotto', 'public/img/categorie/salotto.jpg');

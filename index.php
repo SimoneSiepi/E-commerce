@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once("./classi/Database.php");
 $db = new Database();
 $conn = $db->getConn();
@@ -11,9 +12,7 @@ $catPath = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $db->chiudiConnessione();
 
-session_start();
-$utenteLoggato = isset($_SESSION['utenteLoggato']) && $_SESSION['utenteLoggato'] === true;
-//$utenteLoggato = true;
+$utenteLoggato=isset($_SESSION['utenteLoggato']) && $_SESSION['utenteLoggato'] === true;
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -40,9 +39,8 @@ $utenteLoggato = isset($_SESSION['utenteLoggato']) && $_SESSION['utenteLoggato']
 
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">Catalogo</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">Carrello</a></li>
+          <li><a href="./index.php" class="nav-link px-2 text-secondary">Home</a></li>
+          <li><a href="./pagine/catalogo.php" class="nav-link px-2 text-white">Catalogo</a></li>
         </ul>
 
         <div class="text-end">
