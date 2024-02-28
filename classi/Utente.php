@@ -7,24 +7,22 @@ class Utente
     private $cognome;
     private $email;
     private $citta;
-    private $nCivico;
     private $CAP;
     private $indirizzo;
     private $dataDiNascita;
     private $passwird;
 
-    public function __construct($nome, $cognome, $email, $citta, $nCivico, $CAP, $indirizzo, $dataDiNascita, $passwird)
-    {
+    public function __construct($nome = '', $cognome = '', $email = '', $citta = '', $CAP = '', $indirizzo = '', $dataDiNascita = '', $passwird = '') {
         $this->nome = $nome;
         $this->cognome = $cognome;
         $this->email = $email;
         $this->citta = $citta;
-        $this->nCivico = $nCivico;
         $this->CAP = $CAP;
         $this->indirizzo = $indirizzo;
         $this->dataDiNascita = $dataDiNascita;
         $this->passwird = $passwird;
-    }
+    }//in questo modo i valori sono opzionali e percio non devo per forza settarli. fa da costruttore vuoto
+
 
     // Getter e setter
     public function __get($prop)
@@ -41,7 +39,7 @@ class Utente
         if (property_exists($this, $prop)) {
             $this->$prop = $value;
         } else {
-            echo "Impossibile settare la proprietà " . $prop." ps: e' il sett di utente";
+            echo "Impossibile settare la proprietà " . $prop. " ps: e' il set di utente";
         }
     }
 
@@ -76,8 +74,8 @@ class Utente
 
         if ($this->controlloEmail($this->email)) {
             // Inserisci l'utente nella tabella utenti
-            $queryUtenti = "INSERT INTO utenti (nome, cognome, email, citta, nCivico, CAP, indirizzo, dataDiNascita) 
-                VALUES (:nome, :cognome, :email, :citta, :nCivico, :CAP, :indirizzo, :dataDiNascita)";
+            $queryUtenti = "INSERT INTO utenti (nome, cognome, email, citta, CAP, indirizzo, dataDiNascita) 
+                VALUES (:nome, :cognome, :email, :citta, :CAP, :indirizzo, :dataDiNascita)";
             $stmtUtenti = $conn->prepare($queryUtenti);
 
             // Associa i parametri della query ai valori dell'utente
@@ -85,7 +83,6 @@ class Utente
             $stmtUtenti->bindParam(':cognome', $this->cognome, PDO::PARAM_STR);
             $stmtUtenti->bindParam(':email', $this->email, PDO::PARAM_STR);
             $stmtUtenti->bindParam(':citta', $this->citta, PDO::PARAM_STR);
-            $stmtUtenti->bindParam(':nCivico', $this->nCivico, PDO::PARAM_INT);
             $stmtUtenti->bindParam(':CAP', $this->CAP, PDO::PARAM_INT);
             $stmtUtenti->bindParam(':indirizzo', $this->indirizzo, PDO::PARAM_STR);
             $stmtUtenti->bindParam(':dataDiNascita', $this->dataDiNascita, PDO::PARAM_STR);
@@ -115,32 +112,46 @@ class Utente
     }
 
     // Metodo per il controllo del login di un utente
-    public function controlloUtente($email, $password)
-{
-    if (!$this->controlloEmail($email)) {
-        $db = new Database();
-        $conn = $db->getConn();
+    public function controlloUtente($email, $password){
+        $controllo = false;
+        if (!$this->controlloEmail($email)) {
+            $db = new Database();
+            $conn = $db->getConn();
+    
+            try {
+                // Prepara la query per cercare l'utente con l'email corrispondente
+                $query = "SELECT u.*, c.passwird 
+                  FROM utenti u 
+                  INNER JOIN credenziali c ON u.id = c.id_utente 
+                  WHERE u.email = :email";
+    
+                $stmt = $conn->prepare($query);
+                $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+                $stmt->execute();
+    
+                // Ottieni il risultato
+                $utente = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+                // Chiudi la connessione al database
+                $db->chiudiConnessione();
 
-        // Prepara la query per cercare l'utente con l'email corrispondente
-        $query = "SELECT * FROM utenti WHERE email = :email";
-        $stmt = $conn->prepare($query);
-        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-
-        $stmt->execute();
-
-        // Ottieni il risultato
-        $utente = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        // Chiudi la connessione al database
-        $db->chiudiConnessione();
-
-        // Verifica se l'utente esiste e la password è corretta
-        if ($utente && password_verify($password, $utente['password'])) {
-            return true;  // Utente e password corretti
+                $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    
+                // Verifica se l'utente esiste e la password è corretta
+                if ($utente && password_verify($password, $utente["passwird"])) {
+                    $controllo=true;  // Utente e password corretti 
+                } /* else {
+                    //echo $password."\n\nla password hashata\n\n". $hashedPassword. "\n\n\password inserita dall'utente hashata\n\n". $utente['passwird'];
+                    //echo "non funza ";
+                    $controllo = false;
+                } */
+            } catch (PDOException $e) {
+                echo "Errore durante il recupero dell'utente: " . $e->getMessage();
+                return false;
+            }
         }
+    
+        return $controllo;  // Utente non esiste o password errata
     }
-
-    return false;  // Utente non esiste o password errata
-}
 
 }

@@ -10,10 +10,9 @@ $password=$_POST["password"];
 $indirizzo=$_POST["indirizzo"];
 $citta=$_POST["citta"];
 $CAP=$_POST["CAP"];
-$nCivico=$_POST["nCivico"];
 $dataDiNascita=$_POST["dataDiNascita"];
 
-$utente = new Utente($nome,$cognome,$email,$citta,$nCivico,$CAP,$indirizzo,$dataDiNascita,$password);
+$utente = new Utente($nome,$cognome,$email,$citta,$CAP,$indirizzo,$dataDiNascita,$password);
 
 if ($utente->registrazione()) {
     echo "funziona";

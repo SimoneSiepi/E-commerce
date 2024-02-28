@@ -1,4 +1,4 @@
-<?php session_start();?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="auto">
 
@@ -119,11 +119,6 @@
             </div>
 
             <div class="form-floating">
-                <input type="number" class="form-control" id="nCivico" name="nCivico" placeholder="Numero Civico" required>
-                <label for="nCivico">Numero Civico</label>
-            </div>
-
-            <div class="form-floating">
                 <input type="date" class="form-control" id="dataDiNascita" name="dataDiNascita" placeholder="Data di Nascita" required>
                 <label for="dataDiNascita">Data di Nascita</label>
             </div>
@@ -131,9 +126,11 @@
             <button class="btn btn-primary w-100 py-2" type="submit">Register</button>
 
             <?php
+            if (isset($_SESSION["registrazione"])) {
                 if ($_SESSION["registrazione"]) {
                     echo '<p style="color:red;">dati inseriti non corretti</p>';
                 }
+            }
             ?>
 
             <div class="mt-3 text-center">

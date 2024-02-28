@@ -1,3 +1,5 @@
+<?php session_start();
+?>
 <!doctype html>
 <html lang="it" data-bs-theme="auto">
 
@@ -81,15 +83,24 @@
             <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
             <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">Email address</label>
+                <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email">
+                <label for="email">Email address</label>
             </div>
             <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                <label for="floatingPassword">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+                <label for="password">Password</label>
             </div>
 
             <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
+
+            <?php 
+            if (isset($_SESSION["erroreLogin"])) {
+                if ($_SESSION["erroreLogin"]) {
+                    echo '<p style="color:red;">email o password non validi</p>';
+                    $_SESSION["erroreLogin"] = false;
+                }
+            }
+            ?>
 
             <div class="mt-3 text-center">
             <p>Non hai un account?</p>

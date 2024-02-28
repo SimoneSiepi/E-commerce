@@ -1,20 +1,3 @@
--- Inserimento utenti
-INSERT INTO utenti (nome, cognome, email, citta, nCivico, CAP, indirizzo, dataDiNascita) 
-VALUES 
-    ('Mario', 'Rossi', 'mario.rossi@example.com', 'Roma', 123, 00123, 'Via Roma 1', '1990-01-01'),
-    ('Giulia', 'Verdi', 'giulia.verdi@example.com', 'Milano', 456, 20145, 'Via Milano 2', '1985-05-15');
-
--- Inserimento credenziali
-INSERT INTO credenziali (passwird, id_utente) 
-VALUES 
-    ('password123', 1),
-    ('segreto456', 2);
-
--- Inserimento ruoli
-INSERT INTO ruoli (id_utente, amministratore) 
-VALUES 
-    (1, 1),
-    (2, 0);
 
 -- Inserimento produttori
 INSERT INTO produttori (nome_azienda)
