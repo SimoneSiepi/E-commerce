@@ -2,7 +2,7 @@
 session_start();
 include_once '../classi/Prodotto.php';
 $prodotto = new Prodotto();
-$prodotti= $prodotto->getPrdottiConCategoria();
+$selectedCategory = isset($_GET['categoria']) ? $_GET['categoria'] : 'tutti';
 ?>
 
 <!DOCTYPE html>
@@ -65,10 +65,10 @@ $prodotti= $prodotto->getPrdottiConCategoria();
             <div class="row mb-3">
                 <div class="col">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-outline-primary active" data-filter="all">Tutti</button>
-                        <button type="button" class="btn btn-outline-primary" data-filter="categoria1">salotto</button>
-                        <button type="button" class="btn btn-outline-primary" data-filter="categoria2">cucina</button>
-                        <button type="button" class="btn btn-outline-primary" data-filter="categoria2">bagno</button>
+                    <a href="?categoria=tutti" class="btn btn-outline-primary <?php echo ($selectedCategory == 'tutti') ? 'active' : ''; ?>">Tutti</a>
+                    <a href="?categoria=salotto" class="btn btn-outline-primary <?php echo ($selectedCategory == 'salotto') ? 'active' : ''; ?>">Salotto</a>
+                    <a href="?categoria=cucina" class="btn btn-outline-primary <?php echo ($selectedCategory == 'cucina') ? 'active' : ''; ?>">Cucina</a>
+                    <a href="?categoria=bagno" class="btn btn-outline-primary <?php echo ($selectedCategory == 'bagno') ? 'active' : ''; ?>">Bagno</a>
                         <!-- Aggiungi più bottoni per ogni categoria -->
                     </div>
                 </div>
@@ -80,6 +80,7 @@ $prodotti= $prodotto->getPrdottiConCategoria();
             <div class="container">
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                     <?php
+                    $prodotti= $prodotto->getPrdottiConCategoria($selectedCategory);
                     //print_r($prodotti);
                     // Loop attraverso i risultati della query e crea le card
                     foreach($prodotti as $row) {
@@ -93,6 +94,7 @@ $prodotti= $prodotto->getPrdottiConCategoria();
                         echo '<div class="btn-group">';
                         echo '<button type="button" class="btn btn-sm btn-outline-secondary">View</button>';
                         echo '</div>';
+                        echo '<p class="text-body-secondary">'.number_format($row['prezzo'], 2) .'</p>';
                         echo '</div>';
                         echo '</div>';
                         echo '</div>';

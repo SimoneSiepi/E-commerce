@@ -4,7 +4,7 @@ include_once("./classi/Database.php");
 $db = new Database();
 $conn = $db->getConn();
 
-$query = "SELECT path_img, nome FROM categorie";
+$query = "SELECT path_img, nome_categoria FROM categorie";
 $stmt = $conn->prepare($query);
 $stmt->execute();
 
@@ -73,9 +73,9 @@ $utenteLoggato=isset($_SESSION['utenteLoggato']) && $_SESSION['utenteLoggato'] =
       $index = 0;
       foreach ($catPath as $row) {
         echo '<div class="carousel-item ' . ($index === 0 ? 'active' : '') . '">';
-        echo '<img src="' . $row["path_img"] . '" class="d-block w-100" alt="' . $row["nome"] . '" style="object-fit: cover;">';
+        echo '<img src="' . $row["path_img"] . '" class="d-block w-100" alt="' . $row["nome_categoria"] . '" style="object-fit: cover;">';
         echo '<div class="carousel-caption">';
-        echo '<h2>' . $row["nome"] . '</h2>';
+        echo '<h2>' . $row["nome_categoria"] . '</h2>';
         echo '</div>';
         echo '</div>';
         $index++;

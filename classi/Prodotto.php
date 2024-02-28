@@ -37,7 +37,7 @@ class Prodotto
     }
 
 
-    public function getPrdottiConCategoria(){
+    public function getPrdottiConCategoria($categoria = 'tutti'){
         $db = new Database();
         $conn = $db->getConn();
 
@@ -45,7 +45,12 @@ class Prodotto
         FROM prodotti p
         INNER JOIN categoria_Prodotti cp ON p.id = cp.id_prodotto
         INNER JOIN categorie c ON cp.categoria = c.nome_categoria
-        INNER JOIN immagini i ON p.id = i.id_prodotto;";
+        INNER JOIN immagini i ON p.id = i.id_prodotto";
+        if ($categoria !== 'tutti') {
+            $query .= " WHERE c.nome_categoria = '$categoria'";
+        }
+
+        $query .= ";";
 
         $stmt = $conn->prepare($query);
         $stmt->execute();

@@ -14,17 +14,18 @@ VALUES
 -- Inserimento immagini
 INSERT INTO immagini (percorso, id_prodotto)
 VALUES 
-    ('public/img/prodotti/lavaboBello.jpeg', 1),
-    ('public/img/prodotti/divanoBello.jpeg', 2);
+    ('../public/img/prodotti/lavaboBello.jpeg', 1),
+    ('../public/img/prodotti/divanoBello.jpeg', 2);
 
 -- Inserimento categorie
 INSERT INTO categorie (nome_categoria, path_img)
 VALUES 
     ('cucina', 'public/img/categorie/cucina.jpg'),
-    ('salotto', 'public/img/categorie/salotto.jpg');
+    ('salotto', 'public/img/categorie/salotto.jpg'),
+    ('bagno', 'public/img/categorie/bagno.jpg');
 
 -- Associazione prodotti alle categorie
 INSERT INTO categoria_Prodotti (id_prodotto, categoria)
 VALUES 
-    (1, 'cucina'),
+    (1, 'bagno'),
     (2, 'salotto');
