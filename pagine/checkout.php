@@ -45,6 +45,7 @@ if (!isset($_SESSION["indirizzo"])) {
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <li><a href="../index.php" class="nav-link px-2 text-secondary">Home</a></li>
                     <li><a href="./catalogo.php" class="nav-link px-2 text-white">Catalogo</a></li>
+                    <li><a href="./ordini.php" class="nav-link px-2 text-white">Ordini</a></li>
                 </ul>
 
                 <div class="text-end">
@@ -112,6 +113,9 @@ if (!isset($_SESSION["indirizzo"])) {
                             </div>
                         </div>
                         <hr class="my-4">
+                        <input type="hidden" id="quantita" name="quantita" value="<?php echo $quantita_prodotto; ?>">
+                        <input type="hidden" id="prezzoTotale" name="prezzoTotale" value="<?php echo $prezzoTotale; ?>">
+                        <input type="hidden" id="idProdotto" name="idProdotto" value="<?php echo $_POST['id_prodotto']; ?>">
                         <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
                     </form>
                 </div>

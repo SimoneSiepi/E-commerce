@@ -38,6 +38,7 @@ if (isset($_GET['id'])) {
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <li><a href="../index.php" class="nav-link px-2 text-secondary">Home</a></li>
                     <li><a href="./catalogo.php" class="nav-link px-2 text-white">Catalogo</a></li>
+                    <li><a href="./ordini.php" class="nav-link px-2 text-white">Ordini</a></li>
                 </ul>
 
                 <div class="text-end">
@@ -46,8 +47,8 @@ if (isset($_GET['id'])) {
                     if ($_SESSION['utenteLoggato']) {
                         echo '<a href="./logOut.php" class="btn btn-outline-light me-2">Log-out</a>';
                     } else {
-                        echo '<a href="./pagine/login.php" class="btn btn-outline-light me-2">Login</a>';
-                        echo '<a href="./pagine/registrazione.php" class="btn btn-warning">Sign-up</a>';
+                        echo '<a href="./login.php" class="btn btn-outline-light me-2">Login</a>';
+                        echo '<a href="./registrazione.php" class="btn btn-warning">Sign-up</a>';
                     }
                     ?>
                 </div>

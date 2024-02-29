@@ -41,6 +41,7 @@ $utenteLoggato=isset($_SESSION['utenteLoggato']) && $_SESSION['utenteLoggato'] =
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="./index.php" class="nav-link px-2 text-secondary">Home</a></li>
           <li><a href="./pagine/catalogo.php" class="nav-link px-2 text-white">Catalogo</a></li>
+          <li><a href="./pagine//ordini.php" class="nav-link px-2 text-white">Ordini</a></li>
         </ul>
 
         <div class="text-end">
@@ -95,16 +96,9 @@ $utenteLoggato=isset($_SESSION['utenteLoggato']) && $_SESSION['utenteLoggato'] =
   <!-- featurette -->
   <div class="row featurette">
     <div class="col-md-7">
-      <h2 class="featurette-heading fw-normal lh-1">First featurette heading. <span class="text-body-secondary">It’ll blow your mind.</span></h2>
-      <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
+      <h2 class="featurette-heading fw-normal lh-1">Scopri la vera gioia</h2>
+      <p class="lead">il rifugio perfetto per coccolare le tue natiche e rilassare la tua giornata</p>
       <div class="d-flex gap-2 justify-content-center py-5">
-        <?php 
-          if (!$utenteLoggato) {
-            echo '<a href="./pagine/login.php"><button class="btn btn-secondary rounded-pill px-3" type="button">dettagli</button></a>';
-          }else{
-            echo '<button class="btn btn-secondary rounded-pill px-3" type="button">dettagli</button>';
-          }
-        ?>
         <!-- <button class="btn btn-secondary rounded-pill px-3" type="button">dettagli</button> -->
       </div>
     </div>
@@ -120,16 +114,9 @@ $utenteLoggato=isset($_SESSION['utenteLoggato']) && $_SESSION['utenteLoggato'] =
       </div>
     </div>
     <div class="col-md-7">
-      <h2 class="featurette-heading fw-normal lh-1">First featurette heading. <span class="text-body-secondary">It’ll blow your mind.</span></h2>
-      <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
+      <h2 class="featurette-heading fw-normal lh-1">l'acqua che purifica</h2>
+      <p class="lead">Riscopri la freschezza e dona al tuo viso il trattamento che merita</p>
       <div class="d-flex gap-2 justify-content-center py-5">
-      <?php 
-          if (!$utenteLoggato) {
-            echo '<a href="./pagine/login.php"><button class="btn btn-secondary rounded-pill px-3" type="button">dettagli</button></a>';
-          }else{
-            echo '<button class="btn btn-secondary rounded-pill px-3" type="button">dettagli</button>';
-          }
-        ?>
       </div>
     </div>
   </div>

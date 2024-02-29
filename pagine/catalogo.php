@@ -33,6 +33,7 @@ $selectedCategory = isset($_GET['categoria']) ? $_GET['categoria'] : 'tutti';
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <li><a href="../index.php" class="nav-link px-2 text-secondary">Home</a></li>
                     <li><a href="./catalogo.php" class="nav-link px-2 text-white">Catalogo</a></li>
+                    <li><a href="./ordini.php" class="nav-link px-2 text-white">Ordini</a></li>
                 </ul>
 
                 <div class="text-end">

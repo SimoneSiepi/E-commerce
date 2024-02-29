@@ -1,6 +1,6 @@
-<?php 
+<?php
+session_start(); 
 include_once '../classi/Utente.php';
-session_start();
 $_SESSION["utenteLoggato"] = false;
 $_SESSION["erroreLogin"] = false;
 $email = $_POST["email"];

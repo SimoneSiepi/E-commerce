@@ -18,7 +18,7 @@ if ($utente->registrazione()) {
     echo "funziona";
     $_SESSION["utenteLoggato"] = true;
     $_SESSION["registrazione"] = false;
-    $_SESSION["utente"] = $email;
+    $_SESSION["utente"] = $_POST["email"];
     //$_SESSION["utente"] = $email;
     header('Location: ../index.php');
 }else{
