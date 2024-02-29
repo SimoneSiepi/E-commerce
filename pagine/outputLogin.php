@@ -13,6 +13,7 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
         if ($loginUtente->controlloUtente($email, $password)) {
             $_SESSION["utenteLoggato"] = true;
             //echo "Login riuscito!";
+            $_SESSION["utente"] = $email;
             header('Location: ../index.php');
         } else {
             $_SESSION["erroreLogin"] = true;

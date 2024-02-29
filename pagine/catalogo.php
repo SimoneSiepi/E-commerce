@@ -39,7 +39,7 @@ $selectedCategory = isset($_GET['categoria']) ? $_GET['categoria'] : 'tutti';
                     <?php
                     // Controlla se l'utente è loggato
                     if (isset($_SESSION['utenteLoggato']) && $_SESSION['utenteLoggato'] === true) {
-                        echo '<a href="./pagine/logOut.php" class="btn btn-outline-light me-2">Log-out</a>';
+                        echo '<a href="./logOut.php" class="btn btn-outline-light me-2">Log-out</a>';
                     } else {
                         echo '<a href="./pagine/login.php" class="btn btn-outline-light me-2">Login</a>';
                         echo '<a href="./pagine/registrazione.php" class="btn btn-warning">Sign-up</a>';
@@ -92,7 +92,7 @@ $selectedCategory = isset($_GET['categoria']) ? $_GET['categoria'] : 'tutti';
                         echo '<p class="card-text">' . $row['descrizione'] . '</p>';
                         echo '<div class="d-flex justify-content-between align-items-center">';
                         echo '<div class="btn-group">';
-                        echo '<a href="./dettagliProdotto.php"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>';
+                        echo '<a href="./dettagliProdotto.php?id=' . $row['id'] . '"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>';
                         echo '</div>';
                         echo '<p class="text-body-secondary">'.number_format($row['prezzo'], 2) .'</p>';
                         echo '</div>';

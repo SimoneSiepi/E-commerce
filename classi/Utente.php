@@ -135,7 +135,7 @@ class Utente
                 // Chiudi la connessione al database
                 $db->chiudiConnessione();
 
-                $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+                //$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     
                 // Verifica se l'utente esiste e la password è corretta
                 if ($utente && password_verify($password, $utente["passwird"])) {
@@ -152,6 +152,22 @@ class Utente
         }
     
         return $controllo;  // Utente non esiste o password errata
+    }
+
+    //metodo per ottenere un utetne dalla email
+    public function getUtente($email){
+        $db = new Database;
+        $conn = $db->getConn();
+
+        $query = "SELECT * FROM utenti WHERE utenti.email = :email;";
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $utente = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $utente;
+
     }
 
 }

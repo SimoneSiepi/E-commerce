@@ -61,4 +61,26 @@ class Prodotto
 
         return $result;
     }
+
+    public function getDettagliProdotto($idProdotto){
+        $db = new Database;
+        $conn = $db->getConn();
+
+        $query = "SELECT p.*, i.percorso
+        FROM prodotti p
+        INNER JOIN immagini i ON p.id=i.id_prodotto
+        WHERE p.id = :id
+        GROUP BY p.id;";
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(':id', $idProdotto, PDO::PARAM_INT);
+
+        // Esecuzione della query
+        $stmt->execute();
+
+        // Recupero dei risultati
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $result;
+
+    }
 }
