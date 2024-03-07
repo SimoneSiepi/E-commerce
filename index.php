@@ -12,7 +12,7 @@ $catPath = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $db->chiudiConnessione();
 
-$utenteLoggato=isset($_SESSION['utenteLoggato']) && $_SESSION['utenteLoggato'] === true;
+$utenteLoggato = isset($_SESSION['utenteLoggato']) && $_SESSION['utenteLoggato'] === true;
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -37,11 +37,24 @@ $utenteLoggato=isset($_SESSION['utenteLoggato']) && $_SESSION['utenteLoggato'] =
         </a>
 
 
-
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="./index.php" class="nav-link px-2 text-secondary">Home</a></li>
-          <li><a href="./pagine/catalogo.php" class="nav-link px-2 text-white">Catalogo</a></li>
-          <li><a href="./pagine//ordini.php" class="nav-link px-2 text-white">Ordini</a></li>
+          <?php 
+            if ($utenteLoggato) {
+              echo<<<HTML
+              <li><a href="./index.php" class="nav-link px-2 text-secondary">Home</a></li>
+              <li><a href="./pagine/catalogo.php" class="nav-link px-2 text-white">Catalogo</a></li>
+              <li><a href="./pagine//ordini.php" class="nav-link px-2 text-white">Ordini</a></li>
+              <li><a href="#" class="nav-link px-2 text-white">Carrello</a></li>
+              HTML;//sintassi heredoc
+            }else{
+              echo<<<HTML
+              <li><a href="./pagine/login.php" class="nav-link px-2 text-secondary">Home</a></li>
+              <li><a href="./pagine/login.php" class="nav-link px-2 text-white">Catalogo</a></li>
+              <li><a href="./pagine/login.php" class="nav-link px-2 text-white">Ordini</a></li>
+              <li><a href="./pagine/login.php" class="nav-link px-2 text-white">Carrello</a></li>
+              HTML;
+            }
+          ?>
         </ul>
 
         <div class="text-end">
@@ -123,12 +136,12 @@ $utenteLoggato=isset($_SESSION['utenteLoggato']) && $_SESSION['utenteLoggato'] =
 
   <!-- bottom button -->
   <div class="d-flex gap-2 justify-content-center py-5">
-    <?php 
-      if (!$utenteLoggato) {
-        echo '<a href="./pagine/login.php"><button class="btn btn-primary rounded-pill px-3" type="button">visualizza tutto</button></a>';
-      }else{
-        echo '<a href="./pagine/catalogo.php"><button class="btn btn-primary rounded-pill px-3" type="button">visualizza tutto il catalogo</button></a>';
-      }
+    <?php
+    if (!$utenteLoggato) {
+      echo '<a href="./pagine/login.php"><button class="btn btn-primary rounded-pill px-3" type="button">visualizza tutto</button></a>';
+    } else {
+      echo '<a href="./pagine/catalogo.php"><button class="btn btn-primary rounded-pill px-3" type="button">visualizza tutto il catalogo</button></a>';
+    }
     ?>
   </div>
 </body>
