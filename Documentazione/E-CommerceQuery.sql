@@ -7,25 +7,24 @@ CREATE TABLE IF NOT EXISTS utenti (
     nome VARCHAR(60) NOT NULL,
     cognome VARCHAR(60) NOT NULL,
     email VARCHAR(75) NOT NULL UNIQUE,
-    citta VARCHAR(75) NOT NULL,
-    nCivico INT(5) NOT NULL,
-    CAP INT(27) NOT NULL,
-    indirizzo VARCHAR(75) NOT NULL,
+    citta VARCHAR(75),
+    CAP INT(27),
+    indirizzo VARCHAR(75),
     dataDiNascita DATE NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS credenziali (
     id INT(12) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    passwird VARCHAR(30) NOT NULL,
+    passwird VARCHAR(255) NOT NULL,
     id_utente INT,
-	 FOREIGN KEY (id_utente) REFERENCES utenti(id)
+	 FOREIGN KEY (id_utente) REFERENCES utenti(id) ON UPDATE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS ruoli (
     id INT(12) PRIMARY KEY NOT NULL AUTO_INCREMENT,
     id_utente INT,
     amministratore BOOLEAN NOT NULL,
-	 FOREIGN KEY (id_utente) REFERENCES utenti(id)
+	 FOREIGN KEY (id_utente) REFERENCES utenti(id) ON UPDATE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS carrelli (
@@ -61,12 +60,11 @@ CREATE TABLE IF NOT EXISTS carrello_Prodotti (
     id_carrello INT(12),
     id_prodotto INT(12),
     FOREIGN KEY (id_carrello) REFERENCES carrelli(id),
-    FOREIGN KEY (id_prodotto) REFERENCES prodotti(id)
+    FOREIGN KEY (id_prodotto) REFERENCES prodotti(id) 
 );
 
 CREATE TABLE IF NOT EXISTS ordini (
     id INT(12) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    nome VARCHAR(60) NOT NULL,
     dataAcquisto DATE,
     costoTotale DECIMAL(10, 2),
     id_utente INT(12),
@@ -86,7 +84,7 @@ CREATE TABLE IF NOT EXISTS recensioni (
 );
 
 CREATE TABLE IF NOT EXISTS categorie (
-    nome VARCHAR(255) PRIMARY KEY NOT NULL,
+    nome_categoria VARCHAR(255) PRIMARY KEY NOT NULL,
     path_img VARCHAR(255)
 );
 
@@ -94,15 +92,15 @@ CREATE TABLE IF NOT EXISTS categoria_Prodotti (
     id INT(12) PRIMARY KEY NOT NULL AUTO_INCREMENT,
     id_prodotto INT(12) NOT NULL,
     categoria VARCHAR(255),
-    FOREIGN KEY (id_prodotto) REFERENCES prodotti(id),
-    FOREIGN KEY (categoria) REFERENCES categorie(nome)
+    FOREIGN KEY (id_prodotto) REFERENCES prodotti(id) ON UPDATE CASCADE,
+    FOREIGN KEY (categoria) REFERENCES categorie(nome_categoria)
 );
 
 CREATE TABLE IF NOT EXISTS dettagli_Ordini (
     id_prodotto INT(12) NOT NULL,
     id_ordine INT(12),
     qta INT(255),
-    FOREIGN KEY (id_prodotto) REFERENCES prodotti(id),
+    FOREIGN KEY (id_prodotto) REFERENCES prodotti(id) ON UPDATE CASCADE,
     FOREIGN KEY (id_ordine) REFERENCES ordini(id)
 );
 
